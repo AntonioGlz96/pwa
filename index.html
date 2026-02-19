@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#317EFB">
+    <title>Mi Primera PWA</title>
+    
+    <link rel="manifest" href="manifest.json">
+    
+    <link rel="apple-touch-icon" href="icons/icon-192.png">
+    
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        body {
+            font-family: system-ui, -apple-system, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f2f5;
+        }
+        .card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        .status {
+            color: green;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        <h1>📱 Mi PWA Funcional</h1>
+        <p>Si ves esto, el servidor local está corriendo.</p>
+        <p class="status" id="offline-msg">Estado: En línea</p>
+        <button onclick="alert('¡Funciona!')">Probar Interacción</button>
+    </div>
+
+    <script src="app.js"></script>
+
+    <script>
+        // Pequeño script extra para detectar si pierdes la conexión
+        window.addEventListener('offline', () => {
+            document.getElementById('offline-msg').innerText = "Estado: Fuera de línea (Modo PWA)";
+            document.getElementById('offline-msg').style.color = "orange";
+        });
+        window.addEventListener('online', () => {
+            document.getElementById('offline-msg').innerText = "Estado: En línea";
+            document.getElementById('offline-msg').style.color = "green";
+        });
+    </script>
+</body>
+</html>
